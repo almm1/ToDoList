@@ -9,11 +9,10 @@ import com.example.todolist.R
 import com.example.todolist.presenter.MainPresenter
 import com.example.todolist.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 
 
-class MainActivity : AppCompatActivity(), MainView{
+class MainActivity : AppCompatActivity(), MainView {
 
     private var mainPresenter = MainPresenter()
 
@@ -21,29 +20,32 @@ class MainActivity : AppCompatActivity(), MainView{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        clickListenerCalendar()
-
         mainPresenter.attachView(this)
         mainPresenter.load()
-        mainPresenter.updateDate(SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date()))
+        initDate()
     }
     override fun onDestroy() {
         super.onDestroy()
         mainPresenter.detachView()
     }
-    fun setItem(adapter: SimpleAdapter?)
-    {
+    fun setItem(adapter: SimpleAdapter?) {
         listView.adapter=adapter
     }
-    private fun clickListenerCalendar(){
+    private fun initDate() {
+
+        val c = Calendar.getInstance()
+        c.set(11, 0)
+        c.set(12, 0)
+        c.set(13, 0)
+        mainPresenter.updateDate(c.timeInMillis/1000)
+
         calendarView.setOnDateChangeListener { calendar, year, month, day ->
-            mainPresenter.updateDate("$day-${month+1}-$year")
-            Toast.makeText(this, "${calendar.date}, $day-${month + 1}-$year", Toast.LENGTH_SHORT).show()
+            c.set(year, month, day, 0, 0, 0)
+            mainPresenter.updateDate(c.timeInMillis/1000)
+            Toast.makeText(this, "${calendar.date}, $day-${month + 1}-$year, ${c.timeInMillis/1000}", Toast.LENGTH_SHORT).show()
         }
     }
-
-    fun addClick(view: View)
-    {
+    fun addClick(view: View) {
         mainPresenter.startAddActivity()
     }
 }
