@@ -20,6 +20,11 @@ object DataBase {
        }
        return ev
    }
+    fun loadEvent(id: Int): MutableList<Events> {
+        Realm.getDefaultInstance().use { realm ->
+            return realm.copyFromRealm(realm.where(Events::class.java).equalTo("id", id).findAll())
+        }
+    }
     fun addEvents(event: Events) {
         Realm.getDefaultInstance().use { realm ->
             realm.executeTransactionAsync {

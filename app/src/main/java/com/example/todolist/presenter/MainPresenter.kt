@@ -1,8 +1,12 @@
 package com.example.todolist.presenter
 
-import android.text.format.DateFormat
+import android.content.Context
+import android.content.Intent
 import android.widget.SimpleAdapter
+import androidx.core.content.ContextCompat.startActivity
 import com.example.todolist.R
+import com.example.todolist.activity.AddActivity
+import com.example.todolist.activity.DoActivity
 import com.example.todolist.activity.MainActivity
 import com.example.todolist.data.Events
 import com.example.todolist.data.ParseJson
@@ -11,6 +15,7 @@ import com.example.todolist.model.DataBase
 class MainPresenter {
     private val parse=ParseJson()
     private var view:MainActivity? = null
+    private var date:Long?=null
 
     fun load() {
         val events:List<Events> = parse.fromJson()
@@ -19,13 +24,14 @@ class MainPresenter {
         }
     }
     fun updateDate(date: Long) {
+        //this.date = date
         val data:MutableList<Map<String, String>> = mutableListOf()
         var events:List<Events>? = null
         events = DataBase.loadEvents(date)
 
         events.forEach {
             data+=mapOf("id" to "${it.id}",
-                "timeText" to "${convertTime(it.date_start)} - ${convertTime(it.date_finish)}",
+                "timeText" to "${parse.convertTime(it.date_start)} - ${parse.convertTime(it.date_finish)}",
                 "nameText" to "${it.name}")
         }
         if (data.size > 0) {
@@ -39,16 +45,22 @@ class MainPresenter {
         else
             view?.setItem(null)
     }
-    fun startAddActivity() {
 
-    }
     fun attachView (mainActivity: MainActivity) {
         view = mainActivity
     }
     fun detachView() {
         view = null
     }
-    private fun convertTime(date: String?):String {
-        return DateFormat.format("HH:mm", date!!.toLong()*1000).toString()
+
+    fun startAddActivity(context: Context) {
+        val intent = Intent(view, AddActivity::class.java)
+        startActivity(context, intent, null)
+    }
+    fun startDoActivity(context: Context, id: String) {
+        val intent = Intent(view, DoActivity::class.java)
+        intent.putExtra("id", id)
+        //intent.putExtra("date", date)
+        startActivity(context, intent,null)
     }
 }

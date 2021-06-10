@@ -1,6 +1,7 @@
 package com.example.todolist.data
 
 import android.content.Context
+import android.text.format.DateFormat
 import com.example.todolist.App
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
@@ -21,5 +22,8 @@ class ParseJson
         val buffer = ByteArray(size)
         inputStream.read(buffer)
         return String(buffer)
+    }
+    fun convertTime(date: String?):String {
+        return DateFormat.format("HH:mm", date!!.toLong()*1000).toString()
     }
 }

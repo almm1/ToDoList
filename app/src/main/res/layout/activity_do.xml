@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Button"
+        android:onClick="backClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/titleText2"
@@ -34,10 +35,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBack" />
 
@@ -46,13 +49,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDoName" />
 
@@ -66,6 +71,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:enabled="false"
+        android:focusable="false"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDoTimeStart" />
@@ -78,6 +86,9 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toBottomOf="parent"
