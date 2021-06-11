@@ -4,18 +4,25 @@ import android.app.TimePickerDialog
 import com.example.todolist.activity.AddActivity
 import com.example.todolist.data.Events
 import com.example.todolist.model.DataBase
-
+import kotlin.random.Random
 
 class AddPresenter {
     private var view: AddActivity? = null
     var date:Long=0
-    fun done(textName:String, textStart: String,
-             textFinish: String, textDescription:String) {
-        if (toMinutes(textStart)>=toMinutes(textFinish))
+    var rId = 0
+
+    fun done(
+        textName: String, textStart: String,
+        textFinish: String, textDescription: String,
+    ) {
+        if (textName=="" && textDescription=="" && textStart=="" && textFinish=="")
+            view?.showError()
+        else if (toMinutes(textStart)>=toMinutes(textFinish))
             view?.showErrorTime()
         else {
+            var x = rId
             val event = Events(
-                id = 24, //?????
+                id = x,
                 date_start = (date+toMinutes(textStart)*60).toString(),
                 date_finish = (date+toMinutes(textFinish)*60).toString(),
                 name = textName,
@@ -31,6 +38,7 @@ class AddPresenter {
 
     fun attachView (addActivity: AddActivity, date: Long) {
         this.date=date
+        randomId()
         view = addActivity
     }
     fun detachView() {
@@ -45,7 +53,6 @@ class AddPresenter {
         12,
         0,
         true) //Yes 24 hour time
-
     mTimePicker.show()
     }
 
@@ -55,7 +62,16 @@ class AddPresenter {
         else
             "$n"
     }
+
     private fun toMinutes(time:String):Int {
         return time.substringBefore(" : ").toInt()* 60 + time.substringAfter(" : ").toInt()
+    }
+
+    private fun randomId() {
+        Thread {
+            do {
+                rId = Random.nextInt(3, Int.MAX_VALUE)
+            } while (!DataBase.arrayId.contains(rId))
+        }.start()
     }
 }

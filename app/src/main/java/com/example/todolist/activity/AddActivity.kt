@@ -49,4 +49,12 @@ class AddActivity : AppCompatActivity() {
         builder.setPositiveButton("OK", null)
         builder.show()
     }
+
+    fun showError() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Ошибка")
+        builder.setMessage("Введите данные")
+        builder.setPositiveButton("OK", null)
+        builder.show()
+    }
 }

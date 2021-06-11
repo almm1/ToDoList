@@ -6,16 +6,16 @@ import io.realm.RealmQuery
 import io.realm.RealmResults
 
 object DataBase {
+    val arrayId:MutableList<Int> = mutableListOf()
    fun loadEvents(date: Long): MutableList<Events> {
        val ev:MutableList<Events> = mutableListOf()
        Realm.getDefaultInstance().use { realm ->
            realm.where(Events::class.java)
                .findAll().forEach {
-                   val i = it
-                   val k =i.date_start
                    if(it.date_start!!.toLong() >= date && it.date_start!!.toLong() <= (date+86400)) {
                         ev.add(realm.copyFromRealm(it))
                    }
+                  arrayId.add(realm.copyFromRealm(it).id!!)
                }
        }
        return ev
