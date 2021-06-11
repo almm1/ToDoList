@@ -13,8 +13,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="Button"
+        android:onClick="cancelClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <Button
         android:id="@+id/addButton"
@@ -23,6 +25,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="Button"
+        android:onClick="doneClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,42 +50,39 @@
         android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTimeStart"
+        app:layout_constraintBottom_toTopOf="@+id/textTimeStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cancelButton" />
 
-    <EditText
-        android:id="@+id/editTextTimeStart"
+    <TextView
+        android:id="@+id/textTimeStart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="time"
-        android:maxLines="1"
-        android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTimeFinish"
+        android:text="TextView"
+        android:onClick="timeClick"
+        app:layout_constraintBottom_toTopOf="@+id/textTimeFinish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"/>
 
-    <EditText
-        android:id="@+id/editTextTimeFinish"
+
+    <TextView
+        android:id="@+id/textTimeFinish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="time"
-        android:maxLines="1"
-        android:singleLine="true"
+        android:text="TextView"
+        android:onClick="timeClick"
         app:layout_constraintBottom_toTopOf="@+id/editTextDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTimeStart" />
+        app:layout_constraintTop_toBottomOf="@+id/textTimeStart" />
 
     <EditText
         android:id="@+id/editTextDescription"
@@ -98,6 +98,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTimeFinish"
+        app:layout_constraintTop_toBottomOf="@+id/textTimeFinish"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

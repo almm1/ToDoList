@@ -24,7 +24,7 @@ class MainPresenter {
         }
     }
     fun updateDate(date: Long) {
-        //this.date = date
+        this.date = date
         val data:MutableList<Map<String, String>> = mutableListOf()
         var events:List<Events>? = null
         events = DataBase.loadEvents(date)
@@ -55,12 +55,12 @@ class MainPresenter {
 
     fun startAddActivity(context: Context) {
         val intent = Intent(view, AddActivity::class.java)
+        intent.putExtra("date", date)
         startActivity(context, intent, null)
     }
     fun startDoActivity(context: Context, id: String) {
         val intent = Intent(view, DoActivity::class.java)
         intent.putExtra("id", id)
-        //intent.putExtra("date", date)
         startActivity(context, intent,null)
     }
 }
