@@ -1,7 +1,6 @@
 package com.example.todolist.model
 
 import com.example.todolist.data.Events
-import com.example.todolist.presenter.MainPresenter
 import io.realm.*
 
 object DataBase {

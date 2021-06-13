@@ -3,16 +3,14 @@ package com.example.todolist.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.SimpleAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todolist.R
 import com.example.todolist.presenter.MainPresenter
-import com.example.todolist.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import java.util.Calendar
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity() {
 
     private val mainPresenter = MainPresenter()
 
@@ -28,14 +26,12 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onResume() {
         super.onResume()
-        Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show()
         mainPresenter.updateCallback()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mainPresenter.detachView()
-        Toast.makeText(this, "destroy", Toast.LENGTH_SHORT).show()
     }
     fun setItem(adapter: SimpleAdapter?) {
         listView.adapter=adapter
@@ -49,10 +45,9 @@ class MainActivity : AppCompatActivity(), MainView {
     }
     private fun calendarChangeListener() {
         val c = Calendar.getInstance()
-        calendarView.setOnDateChangeListener { calendar, year, month, day ->
+        calendarView.setOnDateChangeListener { _, year, month, day ->
             c.set(year, month, day, 0, 0, 0)
             mainPresenter.updateDate(c.timeInMillis/1000)
-            Toast.makeText(this, "${calendar.date}, $day-${month + 1}-$year, ${c.timeInMillis/1000}", Toast.LENGTH_SHORT).show()
         }
     }
     fun addClick(view: View) {

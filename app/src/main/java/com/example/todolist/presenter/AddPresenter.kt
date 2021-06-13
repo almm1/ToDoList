@@ -9,8 +9,8 @@ import kotlin.random.Random
 
 class AddPresenter {
     private var view: AddActivity? = null
-    var date:Long=0
-    var rId = 0
+    private var date:Long=0
+    private var rId = 0
 
     fun done(
         textName: String, textStart: String,
@@ -22,9 +22,8 @@ class AddPresenter {
         else if (Calendar.getInstance().timeInMillis/1000 > date+toMinutes(textStart)*60)
             view?.showErrorTime()
         else {
-            var x = rId
             val event = Events(
-                id = x,
+                id = rId,
                 date_start = (date+toMinutes(textStart)*60).toString(),
                 date_finish = (date+toMinutes(textFinish)*60).toString(),
                 name = textName,
@@ -50,11 +49,9 @@ class AddPresenter {
     fun timePick(id : Int) {
         val mTimePicker = TimePickerDialog(view,
             { _, selectedHour, selectedMinute ->
-                view?.setTimeText(id, "${isTwoDigit(selectedHour)} : ${isTwoDigit(selectedMinute)}")
-            },
-            12,
-            0,
-            true) //Yes 24 hour time
+                view?.setTimeText(
+                    id, "${isTwoDigit(selectedHour)} : ${isTwoDigit(selectedMinute)}")
+            }, 12, 0, true) //Yes 24 hour time
         mTimePicker.show()
     }
 
