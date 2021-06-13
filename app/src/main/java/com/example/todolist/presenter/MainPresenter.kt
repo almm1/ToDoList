@@ -17,6 +17,9 @@ class MainPresenter {
     private var view:MainActivity? = null
     private var date:Long?=null
 
+    fun setDate(date: Long) {
+        this.date = date
+    }
     fun load() {
         val events:List<Events> = parse.fromJson()
         events.forEach {
@@ -25,12 +28,9 @@ class MainPresenter {
     }
     fun updateDate(date: Long) {
         this.date = date
-        val data:MutableList<Map<String, String>> = mutableListOf()
-        var events:List<Events>? = null
-        events = DataBase.loadEvents(date)
-
-        events.forEach {
-            data+=mapOf("id" to "${it.id}",
+        val data: MutableList<Map<String, String>> = mutableListOf()
+        DataBase.loadEvents(date).forEach {
+            data += mapOf("id" to "${it.id}",
                 "timeText" to "${parse.convertTime(it.date_start)} - ${parse.convertTime(it.date_finish)}",
                 "nameText" to "${it.name}")
         }
@@ -62,5 +62,9 @@ class MainPresenter {
         val intent = Intent(view, DoActivity::class.java)
         intent.putExtra("id", id)
         startActivity(context, intent,null)
+    }
+
+    fun updateCallback() {
+        updateDate(date!!)
     }
 }

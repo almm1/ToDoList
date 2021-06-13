@@ -1,16 +1,16 @@
 package com.example.todolist.model
 
 import com.example.todolist.data.Events
-import io.realm.Realm
-import io.realm.RealmQuery
-import io.realm.RealmResults
+import com.example.todolist.presenter.MainPresenter
+import io.realm.*
 
 object DataBase {
     val arrayId:MutableList<Int> = mutableListOf()
-   fun loadEvents(date: Long): MutableList<Events> {
+
+    fun loadEvents(date: Long): MutableList<Events> {
        val ev:MutableList<Events> = mutableListOf()
        Realm.getDefaultInstance().use { realm ->
-           realm.where(Events::class.java)
+           realm.where(Events::class.java).sort("date_start")
                .findAll().forEach {
                    if(it.date_start!!.toLong() >= date && it.date_start!!.toLong() <= (date+86400)) {
                         ev.add(realm.copyFromRealm(it))

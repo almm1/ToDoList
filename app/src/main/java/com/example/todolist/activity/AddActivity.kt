@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todolist.R
 import com.example.todolist.presenter.AddPresenter
@@ -20,6 +21,7 @@ class AddActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         addPresenter.detachView()
+       // Toast.makeText(this, "destroyadd", Toast.LENGTH_SHORT).show()
     }
 
     fun cancelClick(view: View) {

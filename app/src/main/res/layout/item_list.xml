@@ -20,7 +20,8 @@
         android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:textColor="#FFFFFF">
 
     </TextView>
 
@@ -28,7 +29,8 @@
         android:id="@+id/nameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:textColor="#FFFFFF">
 
     </TextView>
 </LinearLayout>

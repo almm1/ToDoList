@@ -9,10 +9,8 @@ import com.example.todolist.R
 import com.example.todolist.presenter.MainPresenter
 import com.example.todolist.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import java.util.Calendar
-
 
 class MainActivity : AppCompatActivity(), MainView {
 
@@ -26,16 +24,14 @@ class MainActivity : AppCompatActivity(), MainView {
         mainPresenter.load()
         calendarChangeListener()
         initDate()
-//        val mode = intent.getLongExtra("date",0)
-//
-//        if (mode.toInt()== 0) {
-//            initDate()
-//        }
-//        else {
-//            calendarView.date=mode*1000
-//            mainPresenter.updateDate(mode)
-//        }
     }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "resume", Toast.LENGTH_SHORT).show()
+        mainPresenter.updateCallback()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mainPresenter.detachView()
@@ -49,7 +45,7 @@ class MainActivity : AppCompatActivity(), MainView {
         c.set(11, 0)
         c.set(12, 0)
         c.set(13, 0)
-        mainPresenter.updateDate(c.timeInMillis/1000)
+        mainPresenter.setDate(c.timeInMillis/1000)
     }
     private fun calendarChangeListener() {
         val c = Calendar.getInstance()

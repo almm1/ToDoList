@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import com.example.todolist.activity.AddActivity
 import com.example.todolist.data.Events
 import com.example.todolist.model.DataBase
+import java.util.*
 import kotlin.random.Random
 
 class AddPresenter {
@@ -13,11 +14,12 @@ class AddPresenter {
 
     fun done(
         textName: String, textStart: String,
-        textFinish: String, textDescription: String,
-    ) {
-        if (textName=="" && textDescription=="" && textStart=="" && textFinish=="")
+        textFinish: String, textDescription: String) {
+        if (textName=="" || textDescription=="" || textStart=="" || textFinish=="")
             view?.showError()
         else if (toMinutes(textStart)>=toMinutes(textFinish))
+            view?.showErrorTime()
+        else if (Calendar.getInstance().timeInMillis/1000 > date+toMinutes(textStart)*60)
             view?.showErrorTime()
         else {
             var x = rId
@@ -46,14 +48,14 @@ class AddPresenter {
     }
 
     fun timePick(id : Int) {
-    val mTimePicker = TimePickerDialog(view,
-        { _, selectedHour, selectedMinute ->
-            view?.setTimeText(id, "${isTwoDigit(selectedHour)} : ${isTwoDigit(selectedMinute)}")
-        },
-        12,
-        0,
-        true) //Yes 24 hour time
-    mTimePicker.show()
+        val mTimePicker = TimePickerDialog(view,
+            { _, selectedHour, selectedMinute ->
+                view?.setTimeText(id, "${isTwoDigit(selectedHour)} : ${isTwoDigit(selectedMinute)}")
+            },
+            12,
+            0,
+            true) //Yes 24 hour time
+        mTimePicker.show()
     }
 
     private fun isTwoDigit(n:Int):String {
