@@ -44,17 +44,17 @@ class AddActivity : AppCompatActivity() {
     }
     fun showErrorTime() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Ошибка")
-        builder.setMessage("Исправьте время событий")
-        builder.setPositiveButton("OK", null)
+        builder.setTitle(R.string.error)
+        builder.setMessage(R.string.time_event)
+        builder.setPositiveButton(R.string.ok, null)
         builder.show()
     }
 
     fun showError() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Ошибка")
-        builder.setMessage("Введите данные")
-        builder.setPositiveButton("OK", null)
+        builder.setTitle(R.string.error)
+        builder.setMessage(R.string.input_data)
+        builder.setPositiveButton(R.string.ok, null)
         builder.show()
     }
 }

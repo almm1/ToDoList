@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Список дел</string>
+    <string name="name">Название</string>
+    <string name="time_start">Время начала</string>
+    <string name="time_finish">Время окончания</string>
+    <string name="description">Описание</string>
+    <string name="new_event">Новое событие</string>
+    <string name="event">Событие</string>
+    <string name="error">Ошибка</string>
+    <string name="time_event">Исправьте время событий</string>
+    <string name="input_data">Введите данные</string>
+    <string name="ok">ОК</string>
 </resources>

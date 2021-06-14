@@ -33,7 +33,7 @@
             android:shadowDx="4"
             android:shadowDy="4"
             android:textColor="#FFFFFF"
-            android:text="Cобытие"
+            android:text="@string/event"
             android:textSize="24sp" />
     </RelativeLayout>
 
@@ -49,7 +49,7 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBar2"
-        android:text="Название"  />
+        android:text="@string/name"  />
 
     <EditText
         android:id="@+id/editTextDoName"
@@ -80,7 +80,7 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDoTimeStart"
-        android:text="Время окончания" />
+        android:text="@string/time_finish" />
 
     <EditText
         android:id="@+id/editTextDoTimeStart"
@@ -111,7 +111,7 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDoName"
-        android:text="Время начала" />
+        android:text="@string/time_start" />
 
     <EditText
         android:id="@+id/editTextDoTimeFinish"
@@ -142,7 +142,7 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDoTimeFinish"
-        android:text="Описание" />
+        android:text="@string/description" />
 
     <EditText
         android:id="@+id/editTextDoDescription"
